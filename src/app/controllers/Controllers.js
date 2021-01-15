@@ -54,14 +54,16 @@ exports.createUser=(req,res)=>{
             //création de l'utilisateur
             User.save()
                 .then(user=>{
+                     delete user.__v;
+                     delete user._id;
                     res.status(201).json({
-                     reponse_code:"200",
+                     reponse_code:200,
                      data:user 
                     });
                 })
                 .catch(error=>{
                     res.status(500).json({
-                      reponse_code:"500",
+                      reponse_code:500,
                       data:error 
                     });
                 });
@@ -74,3 +76,79 @@ exports.createUser=(req,res)=>{
   
 }
 
+//login controller
+exports.userLogin=(req,res)=>{
+  user.findOne({phone:req.body.phone,name:req.body.name})
+      .then(data=>{
+             if(data){
+               //login success
+                delete data.__v;
+                delete data._id;
+               var reponse={
+                reponse_code:200,
+                data:data
+               };
+                user.updateOne(
+                  {phone:req.body.phone},
+                  {$set:{isonline:'true',date:Date.now().toString()}},
+                  {upsert:false})
+                    .then(d=>{
+                      //console.log(d);
+                      return res.json(reponse);
+                    })
+                    .catch(error=>{
+                      //console.log(error);
+                      return res.json(reponse);
+                    })
+             }else{
+               // utilisateur non trouvé
+               var reponse={
+                reponse_code:404,
+                data:data
+               };
+               return res.json(reponse);
+             }
+      });
+}
+
+exports.userLogout=(req,res)=>{
+  user.updateOne(
+    {userID:req.body.userID},
+    {$set:{isonline:'false',date:Date.now().toString()}},
+    {upsert:false}
+  ).then(d=>{
+    var data={
+      reponse_code:201,
+      data:"utilisateur déconnecté"
+    }
+     return res.json(data);
+  })
+  .catch(error=>{
+    return res.json({
+      reponse_code:500,
+      data:error
+    });
+  });
+}
+
+exports.userUpdate=(req,res)=>{
+  user.updateOne(
+    {userID:req.body.userID},
+    {$set:{name:req.body.name,phone:req.body.phone,isonline:'true',date:Date.now().toString()}},
+    {upsert:false}
+  ).then(d=>{
+    var data={
+      reponse_code:201,
+      data:"utilisateur modifié"
+    }
+     return res.json(data);
+  })
+  .catch(error=>{
+    return res.json({
+      reponse_code:500,
+      data:error
+    });
+  })
+  ;
+
+}

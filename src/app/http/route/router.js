@@ -19,7 +19,10 @@ router.get('/test/user',veriftoken.verifyTokken,Controller.userController);
 router.get('/api_v1/tokken',Controller.generateToken);
 
 //user routes
-router.post('/api_v1/create_user',veriftoken.verifyTokken,General.userValidator,Controller.createUser);
+router.post('/api_v1/create_user',veriftoken.verifyTokken,Controller.createUser);
+router.post('/api_v1/user/login',veriftoken.verifyTokken,General.userValidator,Controller.userLogin);
+router.post('/api_v1/user/logout',veriftoken.verifyTokken,General.userValidator2,Controller.userLogout);
+router.post('/api_v1/user/update',veriftoken.verifyTokken,General.userValidator2,Controller.userUpdate);
 
 
 
