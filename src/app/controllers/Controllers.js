@@ -152,3 +152,12 @@ exports.userUpdate=(req,res)=>{
   ;
 
 }
+
+/*
+*********************** Transaction management controllers ***********************************
+*/
+
+//MTN
+exports.transactionTest=(req,res)=>{
+  return  res.json(req.body);
+}

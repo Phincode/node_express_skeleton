@@ -24,6 +24,22 @@ router.post('/api_v1/user/login',veriftoken.verifyTokken,General.userValidator,C
 router.post('/api_v1/user/logout',veriftoken.verifyTokken,General.userValidator2,Controller.userLogout);
 router.post('/api_v1/user/update',veriftoken.verifyTokken,General.userValidator2,Controller.userUpdate);
 
+//transaction management mtn
+router.post('/api_v1/init_transaction/mtn_mtn',veriftoken.verifyTokken,Controller.transactionTest);
+router.post('/api_v1/init_transaction/mtn_orange',veriftoken.verifyTokken,Controller.transactionTest);
+router.post('/api_v1/init_transaction/mtn_moov',veriftoken.verifyTokken,Controller.transactionTest);
+
+//transaction management orange
+router.post('/api_v1/init_transaction/orange_orange',veriftoken.verifyTokken,Controller.transactionTest);
+router.post('/api_v1/init_transaction/orange_mtn',veriftoken.verifyTokken,Controller.transactionTest);
+router.post('/api_v1/init_transaction/orange_moov',veriftoken.verifyTokken,Controller.transactionTest);
+
+//transaction management moov
+router.post('/api_v1/init_transaction/moov_moov',veriftoken.verifyTokken,Controller.transactionTest);
+router.post('/api_v1/init_transaction/moov_orange',veriftoken.verifyTokken,Controller.transactionTest);
+router.post('/api_v1/init_transaction/moov_mtn',veriftoken.verifyTokken,Controller.transactionTest);
+
+
 
 
 
