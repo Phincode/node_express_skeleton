@@ -2,7 +2,7 @@ var mongoose=require('mongoose');
 
 var connect=(req,res,next)=>{
    mongoose.connect(
-       'mongodb+srv://user_12:injYFM6Y5xIw7xOK@cluster0.jh91a.mongodb.net/moneytransfert?retryWrites=true&w=majority',
+       'YOUR_CONNECTION_STRING',
         { useNewUrlParser: true,
            useUnifiedTopology: true ,
            useFindAndModify: false,
