@@ -161,3 +161,9 @@ exports.userUpdate=(req,res)=>{
 exports.transactionTest=(req,res)=>{
   return  res.json(req.body);
 }
+
+exports.mtnCallBack=(req,res)=>{
+  console.log("MTN CALL BACK"+req.body);
+  return  res.json("ok");
+}
+//FUTURhokage@13.

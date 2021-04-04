@@ -39,7 +39,9 @@ router.post('/api_v1/init_transaction/moov_moov',veriftoken.verifyTokken,Control
 router.post('/api_v1/init_transaction/moov_orange',veriftoken.verifyTokken,Controller.transactionTest);
 router.post('/api_v1/init_transaction/moov_mtn',veriftoken.verifyTokken,Controller.transactionTest);
 
-
+//call back routes
+//MTN callback
+router.all('/api_v1/mtnCallback',Controller.mtnCallBack);
 
 
 

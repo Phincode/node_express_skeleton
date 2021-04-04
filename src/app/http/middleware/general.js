@@ -14,7 +14,6 @@ exports.userValidator=(req,res,next)=>{
     return res.status(403).json('value phone must not be empty');
 
   }
-  
 
   next();
 }
